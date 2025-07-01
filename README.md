@@ -70,4 +70,14 @@ El servidor estará en `http://localhost:3000`
 - **Admin:** Puede crear, modificar y eliminar todo
 
 ## Configuración
-El archivo `.env` ya está configurado. La base de datos SQLite se crea automáticamente. 
+
+1. **Crear archivo `.env`:**
+   ```env
+   JWT_SECRET=supersecreto123
+   JWT_REFRESH_SECRET=superrefresh123
+   TOKEN_EXPIRES_IN=15m
+   REFRESH_TOKEN_EXPIRES_IN=7d
+   PORT=3000
+   ```
+
+2. **La base de datos SQLite se crea automáticamente** al ejecutar el servidor. 
