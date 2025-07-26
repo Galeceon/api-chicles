@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class GumService {
-  private apiUrl = 'http://localhost:3000/api/gums';
+  private apiUrl = 'https://api-chicles.onrender.com/api/gums';
 
   constructor(private http: HttpClient) {}
 

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class FlavorService {
-  private apiUrl = 'http://localhost:3000/api/flavors'; // ← Verifica esta URL
+  private apiUrl = 'https://api-chicles.onrender.com/api/flavors'; // ← Verifica esta URL
 
   constructor(private http: HttpClient) {}
 
