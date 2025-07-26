@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Chicles</h2>
+    <div class="d-flex gap-2">
+      <!-- Botón de agregar (solo para admin) -->
+      <button 
+        *ngIf="isAdmin" 
+        class="btn btn-success" 
+        (click)="showAddForm = true"
+        title="Agregar chicle">
+        <i class="bi bi-plus-lg"></i> Agregar
+      </button>
+      <a routerLink="/flavors" class="btn btn-outline-primary">Ver Sabores</a>
+    </div>
+  </div>
+  
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+  <!-- Formulario de agregar chicle (solo para admin) -->
+  <div *ngIf="showAddForm && isAdmin" class="card mb-4">
+    <div class="card-header">
+      <h5 class="mb-0">Agregar Nuevo Chicle</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="addGum()">
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input [(ngModel)]="newGum.name" name="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Descripción</label>
+          <textarea [(ngModel)]="newGum.description" name="description" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelAdd()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div *ngIf="gums.length === 0 && !error" class="text-center">
+    <p class="text-muted">No hay chicles disponibles</p>
+  </div>
+  
+  <ul class="list-group" *ngIf="gums.length > 0">
+    <li *ngFor="let gum of gums" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <h5 class="mb-1">{{ gum.name }}</h5>
+        <p class="mb-1 text-muted">{{ gum.description }}</p>
+      </div>
+      <button 
+        *ngIf="isAdmin" 
+        class="btn btn-danger btn-sm" 
+        (click)="deleteGum(gum.id)"
+        title="Eliminar chicle">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </li>
+  </ul>
+</div>
